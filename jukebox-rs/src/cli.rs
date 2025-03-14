@@ -9,4 +9,7 @@ pub(crate) struct Cli {
     /// Listen port
     #[arg(short, long, default_value = "8080", env = "PORT")]
     pub port: u16,
+    /// List of file URLs
+    #[arg(short, long)]
+    pub file_urls: Vec<String>,
 }

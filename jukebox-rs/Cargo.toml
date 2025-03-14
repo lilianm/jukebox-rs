@@ -12,3 +12,7 @@ bytes = { workspace = true }
 pin-project = { workspace = true }
 tracing = { workspace = true }
 tokio = { workspace = true }
+jukebox-library-file = { path = "../jukebox-library-file" }
+jukebox-decoder-mp3 = { path = "../jukebox-decoder-mp3" }
+jukebox-playlist-random = { path = "../jukebox-playlist-random" }
+jukebox-channel = { path = "../jukebox-channel" }
