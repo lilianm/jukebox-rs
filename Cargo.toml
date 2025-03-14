@@ -1,0 +1,8 @@
+
+
+[workspace]
+resolver = "2"
+members = [ "jukebox-decoder", "jukebox-decoder-mp3","jukebox-rs"]
+
+[workspace.package]
+edition = "2024"

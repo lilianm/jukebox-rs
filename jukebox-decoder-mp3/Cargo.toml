@@ -1,0 +1,8 @@
+[package]
+name = "jukebox-decoder-mp3"
+version = "0.1.0"
+edition.workspace = true
+
+[dependencies]
+bytes = "1.10.1"
+jukebox-decoder = { path = "../jukebox-decoder" }
