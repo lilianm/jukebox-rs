@@ -16,18 +16,20 @@
 //! struct MyDecoder;
 //!
 //! impl Decoder for MyDecoder {
-//!     fn name(&self) -> &'static str {
+//!     fn name() -> &'static str {
 //!         "MyDecoder"
 //!     }
 //!
-//!     fn decode(&self, buf: Bytes) -> Box<dyn Stream> {
+//!     fn decode(buf: Bytes) -> Box<dyn Stream> {
 //!         // Implementation goes here
-//!         Box::new(MyStream::new(buf))
+//!         Box::new(MyStream { data: buf.clone() })
 //!     }
 //! }
 //!
+//! #[derive(Default)]
 //! struct MyStream {
 //!     // Stream implementation details
+//!     data: Bytes,
 //! }
 //!
 //! impl Iterator for MyStream {
@@ -54,46 +56,6 @@ pub use frame::Frame;
 pub trait Stream: Iterator<Item = Frame> + Sync + Send {}
 
 /// A trait representing a decoder that can decode a buffer of bytes into a stream of frames.
-///
-/// # Required Methods
-///
-/// - `name`: Returns the name of the decoder as a static string slice.
-/// - `decode`: Takes a buffer of bytes and returns a boxed stream of frames.
-///
-/// # Example
-///
-/// ```
-/// use bytes::Bytes;
-/// use jukebox_decoder::{Decoder, Frame, Stream};
-///
-/// struct MyDecoder;
-///
-/// impl Decoder for MyDecoder {
-///     fn name(&self) -> &'static str {
-///         "MyDecoder"
-///     }
-///
-///     fn decode(&self, buf: Bytes) -> Box<dyn Stream> {
-///         // Implementation goes here
-///         Box::new(MyStream::new(buf))
-///     }
-/// }
-///
-/// struct MyStream {
-///     // Stream implementation details
-/// }
-///
-/// impl Iterator for MyStream {
-///     type Item = Frame;
-///
-///     fn next(&mut self) -> Option<Self::Item> {
-///         // Implementation goes here
-///         None
-///     }
-/// }
-///
-/// impl Stream for MyStream {}
-/// ```
 pub trait Decoder {
     fn name() -> &'static str;
     fn decode(buf: Bytes) -> Box<dyn Stream>;

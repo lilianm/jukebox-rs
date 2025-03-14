@@ -9,11 +9,11 @@
 //!
 //! ```rust
 //! use bytes::Bytes;
-//! use jukebox_decoder_mp3::Decoder;
+//! use jukebox_decoder_mp3::Decoder as Mp3Decoder;
+//! use jukebox_decoder::Decoder;
 //!
-//! let decoder = Decoder::new();
 //! let bytes = Bytes::from(vec![/* MP3 data */]);
-//! let stream = decoder.decode(bytes);
+//! let stream = Mp3Decoder::decode(bytes);
 //! ```
 
 mod decoder;
