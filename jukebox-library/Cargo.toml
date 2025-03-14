@@ -1,0 +1,7 @@
+[package]
+name = "jukebox-library"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+jukebox-decoder = { path = "../jukebox-decoder" }
