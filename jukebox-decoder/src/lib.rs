@@ -95,6 +95,6 @@ pub trait Stream: Iterator<Item = Frame> + Sync + Send {}
 /// impl Stream for MyStream {}
 /// ```
 pub trait Decoder {
-    fn name(&self) -> &'static str;
-    fn decode(&self, buf: Bytes) -> Box<dyn Stream>;
+    fn name() -> &'static str;
+    fn decode(buf: Bytes) -> Box<dyn Stream>;
 }

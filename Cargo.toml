@@ -1,8 +1,25 @@
 
 
 [workspace]
-resolver = "2"
-members = [ "jukebox-decoder", "jukebox-decoder-mp3","jukebox-rs"]
+resolver = "3"
+members = [
+    "jukebox-channel",
+    "jukebox-decoder",
+    "jukebox-decoder-mp3",
+    "jukebox-library",
+    "jukebox-library-file",
+    "jukebox-playlist",
+    "jukebox-playlist-random",
+    "jukebox-rs",
+]
 
 [workspace.package]
 edition = "2024"
+version = "0.1.0"
+
+[workspace.dependencies]
+actix-web = "4.10.2"
+bytes = "1.10.1"
+pin-project = "1.1.10"
+tracing = "0.1.41"
+tokio = { version = "1.44.1", features = ["macros", "rt-multi-thread", "fs"] }
