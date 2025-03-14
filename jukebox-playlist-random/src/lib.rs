@@ -1,5 +1,3 @@
 mod random;
 
-fn main() {
-    println!("Hello, world!");
-}
+pub use random::PlaylistRandom as Playlist;

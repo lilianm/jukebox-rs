@@ -1,7 +1,4 @@
-use std::{
-    ops::{Add, AddAssign},
-    path::Path,
-};
+use std::{ops::AddAssign, path::Path};
 
 use jukebox_decoder::Decoder;
 

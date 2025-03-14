@@ -1,6 +1,5 @@
 use jukebox_library::{Library, LibraryId};
 use jukebox_playlist::{Playlist, Stream};
-use std::default;
 
 #[derive(Debug, Clone)]
 pub struct PlaylistRandom<T: Library> {

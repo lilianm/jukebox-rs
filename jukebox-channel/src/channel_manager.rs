@@ -1,6 +1,5 @@
 use std::{collections::HashMap, time::Duration};
 
-use jukebox_decoder::Decoder;
 use jukebox_playlist::Playlist;
 use tokio::{sync::mpsc, time::Instant};
 
@@ -9,7 +8,7 @@ use crate::{
     stream::Stream,
 };
 
-pub(crate) struct ChannelManager<T: Playlist> {
+pub struct ChannelManager<T: Playlist> {
     incoming: mpsc::Receiver<ChannelMessage>,
     subcriber: mpsc::Sender<ChannelMessage>,
 

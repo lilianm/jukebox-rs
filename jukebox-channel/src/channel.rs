@@ -6,7 +6,6 @@ use std::{
     time::Duration,
 };
 
-use bytes::Bytes;
 use jukebox_decoder::{Frame, Stream};
 use jukebox_playlist::Playlist;
 use tokio::time::Instant;
@@ -25,7 +24,6 @@ pub struct Channel<T>
 where
     T: Playlist,
 {
-    current: Bytes,
     playlist: T,
 
     data: Option<Box<dyn Stream>>,
@@ -64,10 +62,6 @@ impl Default for ChannelTime {
 }
 
 impl ChannelTime {
-    fn new() -> Self {
-        Self::default()
-    }
-
     fn now(&self) -> Instant {
         let mut value = self.start;
 
@@ -107,7 +101,6 @@ where
         let now = ChannelTime::default();
         Self {
             playlist,
-            current: Default::default(),
 
             pause_time: Some(now.start),
             time: now.clone(),
@@ -159,7 +152,7 @@ where
                 Some(frame) => {
                     self.time += &frame;
                     for stream in self.streams.iter() {
-                        stream.push(frame.as_ref());
+                        stream.push(frame.as_ref()).await;
                     }
                 }
                 None => {
