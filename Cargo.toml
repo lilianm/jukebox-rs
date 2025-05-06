@@ -23,3 +23,4 @@ bytes = "1.10.1"
 pin-project = "1.1.10"
 tracing = "0.1.41"
 tokio = { version = "1.44.1", features = ["macros", "rt-multi-thread", "fs"] }
+futures = "0.3.28"

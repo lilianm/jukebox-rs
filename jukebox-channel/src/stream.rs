@@ -7,7 +7,6 @@ use std::{
     task::{Poll, Waker},
 };
 
-use actix_web::body::{BodySize, MessageBody};
 use bytes::Bytes;
 use pin_project::pin_project;
 use tokio::sync::RwLock;
@@ -80,17 +79,13 @@ impl StreamWeak {
     }
 }
 
-impl MessageBody for Stream {
-    type Error = Infallible;
-
-    fn size(&self) -> BodySize {
-        BodySize::Stream
-    }
+impl ::futures::Stream for Stream {
+    type Item = Result<Bytes, Infallible>;
 
     fn poll_next(
         self: std::pin::Pin<&mut Self>,
         cx: &mut std::task::Context<'_>,
-    ) -> Poll<Option<Result<Bytes, Self::Error>>> {
+    ) -> Poll<Option<Self::Item>> {
         let stream = self.project().inner;
         let mut res = Box::pin(stream.inner.write());
         match res.as_mut().poll(cx) {
